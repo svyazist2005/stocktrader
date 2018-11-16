@@ -29,7 +29,7 @@ export default{
         value:200},
         {company:'spaceX',
         value:50}],
-      portfolioStocks:[]
+        portfolioStocks:[]
     }
   },
   methods:{
@@ -46,6 +46,8 @@ export default{
       this.portfolioStocks.push({company:event.company,amount:event.amount});
       console.log(this.portfolioStocks);
       console.log(this.portfolioStocks.length);
+
+      eventBus.$emit("stockToPortfolio",this.portfolioStocks);
     }
   },
   created(){
