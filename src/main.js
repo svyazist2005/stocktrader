@@ -6,6 +6,8 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 import VueRouter from 'vue-router';
 import {routes} from './routes'
 
+export const eventBus=new Vue();
+
 Vue.use(VueRouter);
 
 const router=new VueRouter({routes})
