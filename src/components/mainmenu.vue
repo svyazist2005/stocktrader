@@ -20,8 +20,7 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <a class="nav-link" href="#" @click='toEndDay' >End Day <span class="sr-only">(current)</span></a>
-            <a class="nav-link" href="#" @click='toSyncPortfolioStockValue' >Sync values <span class="sr-only">(current)</span></a>
-          </li>
+            </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Save & load
