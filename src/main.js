@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import VueRouter from 'vue-router';
 import {routes} from './routes'
+import {store} from './store.js';
 
 export const eventBus=new Vue();
 
@@ -17,5 +18,6 @@ Vue.use(BootstrapVue)
 new Vue({
   el: '#app',
   router,
+  store:store,
   render: h => h(App)
 })

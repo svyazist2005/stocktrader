@@ -4,7 +4,8 @@
       <div class="card-header">{{company}}</div>
       <div class="card-body">
         <h5 class="card-text">Stock value: {{value}}$</h5>
-        <div class="input-group input-group-sm mb-3">
+
+        <div v-if="add===true" class="input-group input-group-sm mb-3">
           <div class="input-group-prepend">
           <span class="input-group-text" id="inputGroup-sizing-sm">Amount</span>
           </div>
@@ -12,7 +13,19 @@
             <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" v-model:value='amount' lazy>
             <button class="btn btn-primary btn-sm" @click="buyStock">Buy</button>
           </div>
+        </div>
+
+        <div v-else-if="add===false" class="input-group input-group-sm mb-3">
+          <h5 class="card-text">Amount: {{amount}}</h5>
+          <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Amount</span>
           </div>
+          <div class="input">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" v-model:value='amount' lazy>
+            <button class="btn btn-primary btn-sm" @click="sellStock">Sell</button>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -21,7 +34,7 @@
 <script>
 import {eventBus} from 'C:/Users/user/Desktop/VUEJS/APP11/stocktrader/src/main.js';
 export default{
-  props:['company','value'],
+  props:['company','value','add','amount'],
   data:function(){
     return{
     amount:0
@@ -29,10 +42,32 @@ export default{
   },
   methods:{
     buyStock(){
-      eventBus.$emit('stockBought',{company:this.company,amount:this.amount});
-      console.log('bought');
-      //implement Fund substraction
-    }}
+      for(var pack in this.$store.state.portfolioStocks)
+      {
+      if (this.$store.state.portfolioStocks[pack].company==this.company)
+      {this.$store.state.portfolioStocks[pack].amount=Number(this.$store.state.portfolioStocks[pack].amount)+Number(this.amount);
+        console.log('company exists among bought stocks');
+        console.log(this.$store.state.portfolioStocks);
+        return;}
+      };
+      console.log('company added');
+      this.$store.state.portfolioStocks.push({company:this.company,amount:this.amount});
+      console.log(this.$store.state.portfolioStocks);
+    },
+      sellStock(){
+        for(var pack in this.$store.state.portfolioStocks)
+        {if (this.$store.state.portfolioStocks[pack].company==this.company)
+        {this.$store.state.portfolioStocks[pack].amount=Number(this.$store.state.portfolioStocks[pack].amount)-Number(this.amount);
+          console.log('sold');
+          console.log(this.$store.state.portfolioStocks);
+          if(this.$store.state.portfolioStocks[pack].amount==0)
+          this.$store.state.portfolioStocks.splice(pack,1)
+        }};
+      }
+
+
+
+}
 }
 </script>
 
