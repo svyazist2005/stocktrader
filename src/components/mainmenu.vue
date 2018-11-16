@@ -32,7 +32,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#"><router-link to="/founds"> <b>Founds</b></router-link>
+            <a class="nav-link" href="#"><router-link to="/funds"> <b>Funds</b></router-link>
             </a>
           </li>
         </ul>

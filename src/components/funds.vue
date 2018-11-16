@@ -5,6 +5,13 @@
 </template>
 
 <script>
+export default{
+  data:function(){
+    return{
+    funds:10000
+    }
+  }
+}
 </script>
 
 <style>
