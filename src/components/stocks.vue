@@ -3,7 +3,7 @@
     <h3>Stocks list</h3>
     <div class="stocks">
     <div v-for="stock in marketStocks">
-        <stock></stock>
+        <stock :company='stock.company' :value='stock.value'></stock>
     </div>
     </div>
   </div>
@@ -36,7 +36,7 @@ export default{
 .stocks{
   display: flex;
   flex-flow: row;
+  flex-wrap: wrap;
   align-content:space-around;
-  margin:50px;
 }
 </style>

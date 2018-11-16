@@ -1,12 +1,9 @@
 <template>
   <div class="menu">
     <div class="card">
-      <div class="card-header">
-        Stock
-      </div>
+      <div class="card-header">{{company}}</div>
       <div class="card-body">
-        <h5 class="card-text">Stock Value</h5>
-        <!-- <input type="text" name="" value="" > -->
+        <h5 class="card-text">{{value}}</h5>
         <div class="input-group input-group-sm mb-3">
           <div class="input-group-prepend">
           <span class="input-group-text" id="inputGroup-sizing-sm">Amount</span>
@@ -24,11 +21,17 @@
 </template>
 
 <script>
+export default{
+  props:['company','value']
+}
 </script>
 
 <style>
 .card{
-  text-align: center;
+  text-align: right;
+  margin-left:70px;
+  margin-right:70px;
+
 }
 .card-body{
   width:250px;
