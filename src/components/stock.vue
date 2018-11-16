@@ -21,7 +21,7 @@
           <span class="input-group-text" id="inputGroup-sizing-sm">Amount</span>
           </div>
           <div class="input">
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" v-model:value='amount' lazy>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" v-model:value='sellAmount' lazy>
             <button class="btn btn-primary btn-sm" @click="sellStock">Sell</button>
           </div>
         </div>
@@ -32,12 +32,12 @@
 </template>
 
 <script>
-import {eventBus} from 'C:/Users/user/Desktop/VUEJS/APP11/stocktrader/src/main.js';
 export default{
   props:['company','value','add','amount'],
   data:function(){
     return{
-    amount:0
+    amount:0,
+    sellAmount:0
     }
   },
   methods:{
@@ -51,13 +51,13 @@ export default{
         return;}
       };
       console.log('company added');
-      this.$store.state.portfolioStocks.push({company:this.company,amount:this.amount});
+      this.$store.state.portfolioStocks.push({company:this.company,amount:this.amount,value:this.value});
       console.log(this.$store.state.portfolioStocks);
     },
       sellStock(){
         for(var pack in this.$store.state.portfolioStocks)
         {if (this.$store.state.portfolioStocks[pack].company==this.company)
-        {this.$store.state.portfolioStocks[pack].amount=Number(this.$store.state.portfolioStocks[pack].amount)-Number(this.amount);
+        {this.$store.state.portfolioStocks[pack].amount=Number(this.$store.state.portfolioStocks[pack].amount)-Number(this.sellAmount);
           console.log('sold');
           console.log(this.$store.state.portfolioStocks);
           if(this.$store.state.portfolioStocks[pack].amount==0)

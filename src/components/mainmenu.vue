@@ -19,7 +19,8 @@
       <div class="collapse navbar-collapse righthead" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">End Day <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#" @click='toEndDay' >End Day <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#" @click='toSyncPortfolioStockValue' >Sync values <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,6 +44,17 @@
 </template>
 
 <script>
+export default{
+  methods:{
+    toEndDay(){
+      this.$store.commit('endDay');
+      this.$store.commit('getPortfolioStockValue');
+    },
+    toSyncPortfolioStockValue(){
+      this.$store.commit('getPortfolioStockValue');
+    }
+  }
+}
 </script>
 
 <style>

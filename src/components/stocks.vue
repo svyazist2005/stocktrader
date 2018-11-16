@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import {eventBus} from 'C:/Users/user/Desktop/VUEJS/APP11/stocktrader/src/main.js';
 import Stock from './stock.vue';
 export default{
   components:{

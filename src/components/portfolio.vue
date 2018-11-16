@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import {eventBus} from 'C:/Users/user/Desktop/VUEJS/APP11/stocktrader/src/main.js';
 import Stock from './stock.vue';
 export default{
   components:{
@@ -23,10 +22,6 @@ export default{
     return{
     portfolioStocks:[]
     }
-  },
-  created(){
-    console.log("stock store")
-    eventBus.$on('stockToPortfolio',(event)=>(this.portfolioStocks=event));
   }
 }
 </script>
