@@ -11,7 +11,4 @@
 </script>
 
 <style>
-.menu{
-  text-align: center;
-}
 </style>
