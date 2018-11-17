@@ -32,7 +32,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#"><router-link to="/funds"> <b>Funds</b></router-link>
+            <a class="nav-link" href="#"><router-link to="/funds"> <b>Funds: </b>{{this.$store.state.funds}} <b>$</b></router-link>
             </a>
           </li>
         </ul>
@@ -47,9 +47,6 @@ export default{
   methods:{
     toEndDay(){
       this.$store.commit('endDay');
-      this.$store.commit('getPortfolioStockValue');
-    },
-    toSyncPortfolioStockValue(){
       this.$store.commit('getPortfolioStockValue');
     }
   }

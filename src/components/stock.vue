@@ -42,6 +42,7 @@ export default{
   },
   methods:{
     buyStock(){
+      this.fundsUpdate('buy');
       for(var pack in this.$store.state.portfolioStocks)
       {
       if (this.$store.state.portfolioStocks[pack].company==this.company)
@@ -55,6 +56,8 @@ export default{
       console.log(this.$store.state.portfolioStocks);
     },
       sellStock(){
+        this.fundsUpdate('sell');
+
         for(var pack in this.$store.state.portfolioStocks)
         {if (this.$store.state.portfolioStocks[pack].company==this.company)
         {this.$store.state.portfolioStocks[pack].amount=Number(this.$store.state.portfolioStocks[pack].amount)-Number(this.sellAmount);
@@ -63,6 +66,13 @@ export default{
           if(this.$store.state.portfolioStocks[pack].amount==0)
           this.$store.state.portfolioStocks.splice(pack,1)
         }};
+      },
+      fundsUpdate(mode){
+        if (mode=='sell')
+        {this.$store.state.funds=this.$store.state.funds+this.sellAmount*this.value}
+        else if(mode=='buy')
+        {this.$store.state.funds=this.$store.state.funds-this.amount*this.value}
+
       }
 
 
