@@ -1,7 +1,7 @@
 <template>
   <div class="menu">
     <div class="menu">
-      <h2>Portfolio</h2>
+      <h3>Portfolio</h3>
       <div class="stocks">
       <div v-for="stock in $store.state.portfolioStocks">
           <stock :company='stock.company' :value='stock.value' :amount='stock.amount' :add='false'></stock>

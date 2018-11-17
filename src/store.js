@@ -15,6 +15,8 @@ state:{
     {company:"honda",
     value:200},
     {company:'spaceX',
+    value:50},
+    {company:'DTEK',
     value:50}],
     funds:10000
 },

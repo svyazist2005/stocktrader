@@ -6,12 +6,14 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 import VueRouter from 'vue-router';
 import {routes} from './routes'
 import {store} from './store.js';
+import VueResource from 'vue-resource'
 
-export const eventBus=new Vue();
-
+Vue.use(VueResource);
+Vue.http.options.root='https://stocktraderapp-767c7.firebaseio.com/';
 Vue.use(VueRouter);
 
 const router=new VueRouter({routes})
+
 
 Vue.use(BootstrapVue)
 

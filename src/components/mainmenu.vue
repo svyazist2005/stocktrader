@@ -26,8 +26,8 @@
               Save & load
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Save acivity</a>
-              <a class="dropdown-item" href="#">Load activity</a>
+              <a class="dropdown-item" href="#" @click='saveData'>Save state</a>
+              <a class="dropdown-item" href="#" @click='loadData'>Load state</a>
             </div>
           </li>
 
@@ -48,6 +48,20 @@ export default{
     toEndDay(){
       this.$store.commit('endDay');
       this.$store.commit('getPortfolioStockValue');
+    }
+    ,
+    saveData(){
+      this.$resource('{node}.json').update({node:'data'},[this.$store.state.portfolioStocks,this.$store.state.marketStocks,this.$store.state.funds]);
+    }
+    ,
+    loadData(){
+      this.$resource('{node}.json').get({node:'data'}).
+      then(response=>{return response.json();}).
+      then(data=>{
+        this.$store.state.portfolioStocks=data[0];
+        this.$store.state.marketStocks=data[1];
+        this.$store.state.funds=data[2];
+      });
     }
   }
 }
