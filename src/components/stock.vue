@@ -42,37 +42,45 @@ export default{
   },
   methods:{
     buyStock(){
-      this.fundsUpdate('buy');
+      if (this.fundsUpdate('buy'))
+      {
       for(var pack in this.$store.state.portfolioStocks)
       {
       if (this.$store.state.portfolioStocks[pack].company==this.company)
       {this.$store.state.portfolioStocks[pack].amount=Number(this.$store.state.portfolioStocks[pack].amount)+Number(this.amount);
-        console.log('company exists among bought stocks');
-        console.log(this.$store.state.portfolioStocks);
         return;}
       };
-      console.log('company added');
       this.$store.state.portfolioStocks.push({company:this.company,amount:this.amount,value:this.value});
-      console.log(this.$store.state.portfolioStocks);
-    },
-      sellStock(){
-        this.fundsUpdate('sell');
 
+    }}
+    ,
+      sellStock(){
+        if(this.fundsUpdate('sell'))
+        {
         for(var pack in this.$store.state.portfolioStocks)
         {if (this.$store.state.portfolioStocks[pack].company==this.company)
         {this.$store.state.portfolioStocks[pack].amount=Number(this.$store.state.portfolioStocks[pack].amount)-Number(this.sellAmount);
-          console.log('sold');
-          console.log(this.$store.state.portfolioStocks);
           if(this.$store.state.portfolioStocks[pack].amount==0)
           this.$store.state.portfolioStocks.splice(pack,1)
         }};
-      },
+      }}
+      ,
+
       fundsUpdate(mode){
         if (mode=='sell')
-        {this.$store.state.funds=this.$store.state.funds+this.sellAmount*this.value}
-        else if(mode=='buy')
-        {this.$store.state.funds=this.$store.state.funds-this.amount*this.value}
-
+        {for(var pack in this.$store.state.portfolioStocks)
+          {if (this.$store.state.portfolioStocks[pack].company==this.company)
+            {if(this.$store.state.portfolioStocks[pack].amount>=this.sellAmount)
+              {this.$store.state.funds=this.$store.state.funds+this.sellAmount*this.value;return true;}
+             else{alert('You are trying to sell more stocks then you have');return false;}
+            }
+          }
+        }
+        else
+        if(mode=='buy')
+        {if (this.amount*this.value<=this.$store.state.funds)
+        {this.$store.state.funds=this.$store.state.funds-this.amount*this.value;return true;}
+        else{alert('Not enough Funds for purchase');return false;}}
       }
 
 
