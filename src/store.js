@@ -8,16 +8,16 @@ export const store=new Vuex.Store({
 state:{
   portfolioStocks:[],
   marketStocks:[
-    {company:"bmw",
+    {company:"BMW",
     value:100},
-    {company:"tesla",
+    {company:"Tesla",
     value:90},
-    {company:"honda",
+    {company:"Honda",
     value:200},
-    {company:'spaceX',
+    {company:'SpaceX',
     value:50},
     {company:'DTEK',
-    value:50}],
+    value:20}],
     funds:10000,
     gameDay:0,
     history:[]

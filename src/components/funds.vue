@@ -22,8 +22,12 @@ li{
   width: 400px;
   height: 30px;
   padding: 2px;
+  padding-left: 10px;
+  text-align: center;
 }
 ul{
   align-items: center;
+  margin:0;
+  padding: 0;
 }
 </style>
