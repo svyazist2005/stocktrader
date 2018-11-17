@@ -32,7 +32,10 @@
 </template>
 
 <script>
+import {historyMixIn} from 'C:/Users/user/Desktop/VUEJS/APP11/stocktrader/src/historyMixIn';
+
 export default{
+  mixins:[historyMixIn],
   props:['company','value','add','amount'],
   data:function(){
     return{
@@ -44,6 +47,8 @@ export default{
     buyStock(){
       if (this.fundsUpdate('buy'))
       {
+      this.addEventToHistory(this.amount +" "+this.company+" stocks purchased,"+this.value+ "$ each. Expense: "+Number(this.amount)*Number(this.value)+"$");
+
       for(var pack in this.$store.state.portfolioStocks)
       {
       if (this.$store.state.portfolioStocks[pack].company==this.company)
@@ -51,12 +56,14 @@ export default{
         return;}
       };
       this.$store.state.portfolioStocks.push({company:this.company,amount:this.amount,value:this.value});
-
-    }}
+      }
+  }
     ,
       sellStock(){
         if(this.fundsUpdate('sell'))
         {
+        this.addEventToHistory(this.amount +" "+this.company+" stocks sold,"+this.value+ "$ each. Income: "+Number(this.amount)*Number(this.value)+"$");
+
         for(var pack in this.$store.state.portfolioStocks)
         {if (this.$store.state.portfolioStocks[pack].company==this.company)
         {this.$store.state.portfolioStocks[pack].amount=Number(this.$store.state.portfolioStocks[pack].amount)-Number(this.sellAmount);
@@ -92,8 +99,8 @@ export default{
 <style>
 .card{
   text-align: right;
-  margin-left:70px;
-  margin-right:70px;
+  margin-left:50px;
+  margin-right:50px;
 
 }
 .card-body{

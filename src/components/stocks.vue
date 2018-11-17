@@ -1,6 +1,6 @@
 <template>
   <div class="menu">
-    <h3>Stocks list</h3>
+    <h3>Stocks market</h3>
     <div class="stocks">
     <div v-for="stock in $store.state.marketStocks">
         <stock :company='stock.company' :value='stock.value' :add='true'></stock>

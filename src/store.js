@@ -18,7 +18,9 @@ state:{
     value:50},
     {company:'DTEK',
     value:50}],
-    funds:10000
+    funds:10000,
+    gameDay:0,
+    history:[]
 },
 mutations:{
   getPortfolioStockValue:state=>{

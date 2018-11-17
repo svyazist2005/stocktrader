@@ -43,15 +43,19 @@
 </template>
 
 <script>
+import {historyMixIn} from 'C:/Users/user/Desktop/VUEJS/APP11/stocktrader/src/historyMixIn';
 export default{
+  mixins:[historyMixIn],
   methods:{
     toEndDay(){
       this.$store.commit('endDay');
       this.$store.commit('getPortfolioStockValue');
+      this.$store.state.gameDay++;
+      this.addEventToHistory("Game day "+this.$store.state.gameDay+" end. Balance: "+this.$store.state.funds+"$");
     }
     ,
     saveData(){
-      this.$resource('{node}.json').update({node:'data'},[this.$store.state.portfolioStocks,this.$store.state.marketStocks,this.$store.state.funds]);
+      this.$resource('{node}.json').update({node:'data'},[this.$store.state.portfolioStocks,this.$store.state.marketStocks,this.$store.state.funds,this.$store.state.gameDay,this.$store.state.history]);
     }
     ,
     loadData(){
@@ -61,13 +65,15 @@ export default{
         this.$store.state.portfolioStocks=data[0];
         this.$store.state.marketStocks=data[1];
         this.$store.state.funds=data[2];
+        this.$store.state.gameDay=data[3];
+        this.$store.state.history=data[4];
       });
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
 .menu{
   margin:20px;
 }
