@@ -2,14 +2,16 @@
   <div class="menu">
       <h1>Portfolio</h1>
       <hr>
+
       <div class="stocks">
-      <div v-for="stock in $store.state.portfolioStocks">
-      <transition enter-active-class="animated fadeIn" mode="out-in">
+      <transition-group leave-active-class="animated fadeOut" mode="out-in">
+      <div class="stocks" v-for="(stock,index) in $store.state.portfolioStocks" :key='index'>
           <stock :company='stock.company' :value='stock.value' :amount='stock.amount' :add='false'></stock>
-      </transition>
       </div>
+     </transition-group>
       <br>
       </div>
+
   </div>
 </template>
 
@@ -28,5 +30,4 @@ export default{
 </script>
 
 <style>
-
 </style>

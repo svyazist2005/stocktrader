@@ -5,12 +5,12 @@
       <form class="form-inline">
         <div class='menus'>
           <div class='left'>
-            <router-link to="/"><button class="btn btn-outline-success mybutton" type="button">Stock Trader</button></router-link>
-            <router-link to="/portfolio"><button class="btn btn-outline-success mybutton" type="button">Portfolio</button></router-link>
-            <router-link to="/stocks"><button class="btn btn-outline-success mybutton" type="button">Stocks</button></router-link>
+            <router-link to="/"><button class="btn btn-sm btn-outline-secondary mybutton" type="button">Stock Trader</button></router-link>
+            <router-link to="/portfolio"><button class="btn btn-sm btn-outline-secondary mybutton" type="button">Portfolio</button></router-link>
+            <router-link to="/stocks"><button class="btn btn btn-sm btn-outline-secondary mybutton" type="button">Stocks</button></router-link>
           </div>
           <div class='right'>
-            <button class="btn btn-outline-success mybutton" type="button" @click='toEndDay' >End day</button>
+            <button class="btn btn-sm btn-outline-secondary mybutton" type="button" @click='toEndDay' >End day</button>
             <div class="nav-item dropdown">
               <a class="nav-link dropdown-toggle mybutton" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Save & load
@@ -20,7 +20,7 @@
                 <a class="dropdown-item" href="#" @click='loadData'>Load state</a>
               </div>
             </div>
-            <router-link to="/funds"> <button class="btn btn-outline-success mybutton" type="button"><b>Funds: </b>{{this.$store.state.funds}} <b>$</b></button></router-link>
+            <router-link to="/funds"> <button class="btn btn-sm btn-outline-secondary  mybutton" type="button"><b>Funds: </b>{{this.$store.state.funds}} <b>$</b></button></router-link>
           </div>
         </div>
 
@@ -101,6 +101,7 @@ margin-left:200px;}
   margin-left:30px;
   margin-right:30px;
   font-size: 20px;
+
 }
 
 

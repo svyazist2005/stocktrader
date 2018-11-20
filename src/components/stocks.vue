@@ -25,7 +25,7 @@ export default{
 
 <style>
 .stocks{
-  display: flex;
+  display:inline-flex;
   flex-flow: row;
   flex-wrap: wrap;
   align-content:space-around;
