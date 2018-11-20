@@ -12,7 +12,9 @@ import MainMenu from './components/mainmenu.vue'
 export default{
   components:{
     mainmenu:MainMenu
-  }
+  },
+  created()
+  {this.$store.commit('endDay');}
 }
 </script>
 

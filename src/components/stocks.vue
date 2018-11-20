@@ -17,10 +17,8 @@ import Stock from './stock.vue';
 export default{
   components:{
     stock:Stock
-  },
-  created()
-  {this.$store.commit('endDay');}
-}
+  }}
+  
 </script>
 
 <style>
