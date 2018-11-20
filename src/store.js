@@ -20,7 +20,8 @@ state:{
     value:20}],
     funds:10000,
     gameDay:0,
-    history:[]
+    history:[],
+    amount:0
 },
 mutations:{
   getPortfolioStockValue:state=>{

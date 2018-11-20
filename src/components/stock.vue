@@ -10,7 +10,7 @@
           <span class="input-group-text" id="inputGroup-sizing-sm">Amount</span>
           </div>
           <div class="input">
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" v-model:value='amount' lazy>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" v-model:value='buyAmount' lazy>
             <button class="btn btn-primary btn-sm" @click="buyStock">Buy</button>
           </div>
         </div>
@@ -39,7 +39,7 @@ export default{
   props:['company','value','add','amount'],
   data:function(){
     return{
-    amount:0,
+    buyAmount:0,
     sellAmount:0
     }
   },
@@ -47,15 +47,15 @@ export default{
     buyStock(){
       if (this.fundsUpdate('buy'))
       {
-      this.addEventToHistory(this.amount +" "+this.company+" stocks purchased,"+this.value+ "$ each. Expense: "+Number(this.amount)*Number(this.value)+"$");
+      this.addEventToHistory(this.buyAmount +" "+this.company+" stocks purchased,"+this.value+ "$ each. Expense: "+Number(this.buyAmount)*Number(this.value)+"$");
 
       for(var pack in this.$store.state.portfolioStocks)
       {
       if (this.$store.state.portfolioStocks[pack].company==this.company)
-      {this.$store.state.portfolioStocks[pack].amount=Number(this.$store.state.portfolioStocks[pack].amount)+Number(this.amount);
+      {this.$store.state.portfolioStocks[pack].amount=Number(this.$store.state.portfolioStocks[pack].amount)+Number(this.buyAmount);
         return;}
       };
-      this.$store.state.portfolioStocks.push({company:this.company,amount:this.amount,value:this.value});
+      this.$store.state.portfolioStocks.push({company:this.company,amount:this.buyAmount,value:this.value});
       }
   }
     ,
@@ -85,8 +85,8 @@ export default{
         }
         else
         if(mode=='buy')
-        {if (this.amount*this.value<=this.$store.state.funds)
-        {this.$store.state.funds=this.$store.state.funds-this.amount*this.value;return true;}
+        {if (this.buyAmount*this.value<=this.$store.state.funds)
+        {this.$store.state.funds=this.$store.state.funds-this.buyAmount*this.value;return true;}
         else{alert('Not enough Funds for purchase');return false;}}
       }
 
