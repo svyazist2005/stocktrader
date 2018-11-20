@@ -47,7 +47,11 @@ export default{
       this.$store.commit('endDay');
       this.$store.commit('getPortfolioStockValue');
       this.$store.state.gameDay++;
+      this.$store.state.funds=Math.floor(this.$store.state.funds*0.7);
       this.addEventToHistory("Game day "+this.$store.state.gameDay+" end. Balance: "+this.$store.state.funds+"$");
+      this.addEventToHistory("Tax of amount :"+this.$store.state.funds+"$ substracted (30% of fund balance)");
+      this.addEventToHistory("Game day "+this.$store.state.gameDay+" start. Balance: "+this.$store.state.funds+"$");
+
     }
     ,
     saveData(){
