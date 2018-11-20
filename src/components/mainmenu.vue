@@ -12,13 +12,15 @@
           <div class='right'>
             <button class="btn btn-sm btn-outline-secondary mybutton" type="button" @click='toEndDay' >End day</button>
             <div class="nav-item dropdown">
-              <button class="btn btn-sm btn-outline-secondary mybutton nav-link dropdown-toggle mybutton"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-sm btn-outline-secondary mybutton nav-link dropdown-toggle mybutton"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="dropdown==true?dropdown=false:dropdown=true">
                 Save & load
               </button>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <button class="btn btn-sm btn-outline-secondary dropdown-item" href="#" @click='saveData'>Save state</button>
-                <button class="btn btn-sm btn-outline-secondary dropdown-item" href="#" @click='loadData'>Load state</button>
+              <transition enter-active-class="animated fadeIn" mode="out-in">
+              <div v-if='dropdown==true' class='dropdown-menu' aria-labelledby="navbarDropdown">
+                <button class="btn btn-sm btn-outline-secondary dropdown-item"  @click='saveData'>Save state</button>
+                <button class="btn btn-sm btn-outline-secondary dropdown-item"  @click='loadData'>Load state</button>
               </div>
+                </transition>
             </div>
             <router-link to="/funds"> <button class="btn btn-sm btn-outline-secondary  mybutton" type="button"><b>Funds: </b>{{this.$store.state.funds}} <b>$</b></button></router-link>
           </div>
@@ -34,8 +36,13 @@
 <script>
 import {historyMixIn} from 'C:/Users/user/Desktop/VUEJS/APP11/stocktrader/src/historyMixIn';
 export default{
+  data:function(){
+    return{
+      dropdown:false
+    }
+  },
   mixins:[historyMixIn],
-  methods:{
+    methods:{
     toEndDay(){
       this.$store.commit('endDay');
       this.$store.commit('getPortfolioStockValue');
@@ -72,15 +79,6 @@ h1,h2,h3,h4{
   margin:20px;
 }
 
-/* li{
-  margin-left:30px;
-  margin-right:30px;
-}
-
-.righthead{
-  margin-left:200px;
-} */
-
 .menus{
   display: flex;
 }
@@ -103,6 +101,7 @@ margin-left:200px;}
   font-size: 20px;
 
 }
+
 
 
 </style>
