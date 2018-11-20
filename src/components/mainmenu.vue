@@ -5,9 +5,9 @@
       <form class="form-inline">
         <div class='menus'>
           <div class='left'>
-            <button class="btn btn-outline-success mybutton" type="button"><router-link to="/">Stock Trader</router-link></button>
-            <button class="btn btn-outline-success mybutton" type="button"><router-link to="/portfolio">Portfolio</router-link></button>
-            <button class="btn btn-outline-success mybutton" type="button"><router-link to="/stocks">Stocks</router-link></button>
+            <router-link to="/"><button class="btn btn-outline-success mybutton" type="button">Stock Trader</button></router-link>
+            <router-link to="/portfolio"><button class="btn btn-outline-success mybutton" type="button">Portfolio</button></router-link>
+            <router-link to="/stocks"><button class="btn btn-outline-success mybutton" type="button">Stocks</button></router-link>
           </div>
           <div class='right'>
             <button class="btn btn-outline-success mybutton" type="button" @click='toEndDay' >End day</button>
@@ -20,7 +20,7 @@
                 <a class="dropdown-item" href="#" @click='loadData'>Load state</a>
               </div>
             </div>
-            <button class="btn btn-outline-success mybutton" type="button"><router-link to="/funds"> <b>Funds: </b>{{this.$store.state.funds}} <b>$</b></router-link></button>
+            <router-link to="/funds"> <button class="btn btn-outline-success mybutton" type="button"><b>Funds: </b>{{this.$store.state.funds}} <b>$</b></button></router-link>
           </div>
         </div>
 
