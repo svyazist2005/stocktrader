@@ -44,4 +44,11 @@ position:absolute;
 transition: all 1s ;
 }
 
+.stocks{
+  display:inline-flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  align-content:space-around;
+}
+
 </style>

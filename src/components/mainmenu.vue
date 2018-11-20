@@ -12,12 +12,12 @@
           <div class='right'>
             <button class="btn btn-sm btn-outline-secondary mybutton" type="button" @click='toEndDay' >End day</button>
             <div class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle mybutton" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button class="btn btn-sm btn-outline-secondary mybutton nav-link dropdown-toggle mybutton"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Save & load
-              </a>
+              </button>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#" @click='saveData'>Save state</a>
-                <a class="dropdown-item" href="#" @click='loadData'>Load state</a>
+                <button class="btn btn-sm btn-outline-secondary dropdown-item" href="#" @click='saveData'>Save state</button>
+                <button class="btn btn-sm btn-outline-secondary dropdown-item" href="#" @click='loadData'>Load state</button>
               </div>
             </div>
             <router-link to="/funds"> <button class="btn btn-sm btn-outline-secondary  mybutton" type="button"><b>Funds: </b>{{this.$store.state.funds}} <b>$</b></button></router-link>
