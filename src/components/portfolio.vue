@@ -2,6 +2,7 @@
   <div class="menu">
     <div class="menu">
       <h1>Portfolio</h1>
+      <hr>
       <div class="stocks">
       <div v-for="stock in $store.state.portfolioStocks">
           <stock :company='stock.company' :value='stock.value' :amount='stock.amount' :add='false'></stock>
