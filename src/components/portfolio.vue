@@ -1,15 +1,15 @@
 <template>
   <div class="menu">
-    <div class="menu">
       <h1>Portfolio</h1>
       <hr>
       <div class="stocks">
       <div v-for="stock in $store.state.portfolioStocks">
+      <transition enter-active-class="animated fadeIn" mode="out-in">
           <stock :company='stock.company' :value='stock.value' :amount='stock.amount' :add='false'></stock>
+      </transition>
       </div>
       <br>
       </div>
-    </div>
   </div>
 </template>
 
