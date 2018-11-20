@@ -15,12 +15,12 @@
                 <button class="btn btn-sm btn-outline-secondary mybutton nav-link dropdown-toggle mybutton"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="dropdown==true?dropdown=false:dropdown=true">
                 Save & load
               </button>
-              <transition enter-active-class="animated fadeIn" mode="out-in">
+              <transition enter-active-class="animated fadeIn" >
               <div v-if='dropdown==true' class='dropdown-menu' aria-labelledby="navbarDropdown">
                 <button class="btn btn-sm btn-outline-secondary dropdown-item"  @click='saveData'>Save state</button>
                 <button class="btn btn-sm btn-outline-secondary dropdown-item"  @click='loadData'>Load state</button>
               </div>
-                </transition>
+              </transition>
             </div>
             <router-link to="/funds"> <button class="btn btn-sm btn-outline-secondary  mybutton" type="button"><b>Funds: </b>{{this.$store.state.funds}} <b>$</b></button></router-link>
           </div>
