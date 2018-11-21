@@ -77,17 +77,17 @@ export default{
         if (mode=='sell')
         {for(var pack in this.$store.state.portfolioStocks)
           {if (this.$store.state.portfolioStocks[pack].company==this.company)
-            {if(this.$store.state.portfolioStocks[pack].amount>=this.sellAmount)
+            {if(this.$store.state.portfolioStocks[pack].amount>=this.sellAmount&&this.sellAmount>0)
               {this.$store.state.funds=this.$store.state.funds+this.sellAmount*this.value;return true;}
-             else{alert('You are trying to sell more stocks then you have');return false;}
+             else{alert('You are trying to sell more stocks then you have OR minus value');return false;}
             }
           }
         }
         else
         if(mode=='buy')
-        {if (this.buyAmount*this.value<=this.$store.state.funds)
+        {if (this.buyAmount*this.value<=this.$store.state.funds&&this.buyAmount>0)
         {this.$store.state.funds=this.$store.state.funds-this.buyAmount*this.value;return true;}
-        else{alert('Not enough Funds for purchase');return false;}}
+        else{alert('Not enough Funds for purchase OR minus value');return false;}}
       }
 
 
