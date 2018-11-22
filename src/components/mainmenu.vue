@@ -37,7 +37,7 @@
 import {historyMixIn} from 'C:/Users/user/Desktop/VUEJS/APP11/stocktrader/src/historyMixIn';
 import {mapGetters} from 'vuex';
 export default{
-  computed:mapGetters(['getFunds','getGameDay']),
+  computed:mapGetters(['getFunds','getGameDay','getPortfolioStocks','getMarketStocks','getHistory']),
   data:function(){
     return{
       dropdown:false
@@ -55,18 +55,14 @@ export default{
     }
     ,
     saveData(){
-      this.$resource('{node}.json').update({node:'data'},[this.$store.state.portfolioStocks,this.$store.state.marketStocks,this.$store.state.funds,this.$store.state.gameDay,this.$store.state.history]);
+      this.$resource('{node}.json').update({node:'data'},[this.getPortfolioStocks,this.getMarketStocks,this.getFunds,this.getGameDay,this.getHistory]);
     }
     ,
     loadData(){
       this.$resource('{node}.json').get({node:'data'}).
       then(response=>{return response.json();}).
       then(data=>{
-        this.$store.state.portfolioStocks=data[0];
-        this.$store.state.marketStocks=data[1];
-        this.$store.state.funds=data[2];
-        this.$store.state.gameDay=data[3];
-        this.$store.state.history=data[4];
+        this.$store.commit('load',data);
       });
     }
   }
