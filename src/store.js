@@ -48,6 +48,17 @@ mutations:{
     for(var i in state.marketStocks)
     state.marketStocks[i].value=Math.floor(Math.random() * (Math.floor(100) - Math.ceil(1) + 1)) + Math.ceil(1);;
   }
+},
+getters:{
+  getFunds:state=>{
+    return state.funds;
+  },
+  getGameDay:state=>{
+    return state.gameDay;
+  },
+  getHistory:state=>{
+    return state.history;
+  }
 }
 
 })

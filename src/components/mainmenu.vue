@@ -22,7 +22,7 @@
               </div>
               </transition>
             </div>
-            <router-link to="/funds"> <button class="btn btn-sm btn-outline-secondary  mybutton" type="button"><b>Funds: </b>{{this.$store.state.funds}} <b>$</b></button></router-link>
+            <router-link to="/funds"> <button class="btn btn-sm btn-outline-secondary  mybutton" type="button"><b>Funds: </b>{{getFunds}} <b>$</b></button></router-link>
           </div>
         </div>
 
@@ -35,7 +35,9 @@
 
 <script>
 import {historyMixIn} from 'C:/Users/user/Desktop/VUEJS/APP11/stocktrader/src/historyMixIn';
+import {mapGetters} from 'vuex';
 export default{
+  computed:mapGetters(['getFunds','getGameDay']),
   data:function(){
     return{
       dropdown:false
