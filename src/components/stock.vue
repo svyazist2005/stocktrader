@@ -21,7 +21,7 @@
           <span class="input-group-text" id="inputGroup-sizing-sm">Amount</span>
           </div>
           <div class="input">
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" v-model:value='sellAmount' lazy>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" v-model:value='purchase.sellAmount' lazy>
             <button class="btn btn-primary btn-sm" @click="sellStock">Sell</button>
           </div>
         </div>
@@ -54,35 +54,26 @@ export default{
       this.purchase.mode='buy';
       this.updateFunds();
       if(this.$store.getters.getTransactionState)
-      // if (this.fundsUpdate('buy'))
       {
       this.addEventToHistory(this.buyAmount +" "+this.company+" stocks purchased,"+this.value+ "$ each. Expense: "+Number(this.buyAmount)*Number(this.value)+"$");
-
-      for(var pack in this.$store.state.portfolioStocks)
-      {
-      if (this.$store.state.portfolioStocks[pack].company==this.company)
-      {this.$store.state.portfolioStocks[pack].amount=Number(this.$store.state.portfolioStocks[pack].amount)+Number(this.buyAmount);
-        return;}
-      };
-      this.$store.state.portfolioStocks.push({company:this.company,amount:this.buyAmount,value:this.value});
-      }
-  }
+      this.buy();
+      }}
     ,
       sellStock(){
+        console.log(this.purchase);
         this.purchase.mode='sell';
         this.updateFunds();
         if(this.$store.getters.getTransactionState)
-        // if(this.fundsUpdate('sell'))
         {
         this.addEventToHistory(this.amount +" "+this.company+" stocks sold,"+this.value+ "$ each. Income: "+Number(this.amount)*Number(this.value)+"$");
-
-        for(var pack in this.$store.state.portfolioStocks)
-        {if (this.$store.state.portfolioStocks[pack].company==this.company)
-        {this.$store.state.portfolioStocks[pack].amount=Number(this.$store.state.portfolioStocks[pack].amount)-Number(this.sellAmount);
-          if(this.$store.state.portfolioStocks[pack].amount==0)
-          this.$store.state.portfolioStocks.splice(pack,1)
-        }};
+        this.sell();
       }},
+      buy(purchase){
+        this.$store.commit('buyStock',purchase=this.purchase);
+      },
+      sell(purchase){
+        this.$store.commit('sellStock',purchase=this.purchase);
+      },
       updateFunds(purchase){
         this.$store.commit('fundsUpdate',purchase=this.purchase);
       }

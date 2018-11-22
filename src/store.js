@@ -54,7 +54,7 @@ mutations:{
     {for(var pack in state.portfolioStocks)
       {if (state.portfolioStocks[pack].company==payload.company)
         {if(state.portfolioStocks[pack].amount>=payload.sellAmount&&payload.sellAmount>0)
-          {state.funds=this.$store.state.funds+payload.sellAmount*payload.value;state.transaction=true;}
+          {state.funds=state.funds+payload.sellAmount*payload.value;state.transaction=true;}
          else{alert('You are trying to sell more stocks then you have OR minus value');state.transaction=false;}
         }
       }
@@ -64,8 +64,27 @@ mutations:{
     {if (payload.buyAmount*payload.value<=state.funds&&payload.buyAmount>0)
     {state.funds=state.funds-payload.buyAmount*payload.value;state.transaction=true;}
     else{alert('Not enough Funds for purchase OR minus value');state.transaction=false;}}
+  },
+  buyStock:(state,payload)=>{
+    for(var pack in state.portfolioStocks)
+    {
+    if (state.portfolioStocks[pack].company==payload.company)
+    {state.portfolioStocks[pack].amount=Number(state.portfolioStocks[pack].amount)+Number(payload.buyAmount);
+      return;}
+    };
+    state.portfolioStocks.push({company:payload.company,amount:payload.buyAmount,value:payload.value});
+  },
+  sellStock:(state,payload)=>{
+    for(var pack in state.portfolioStocks)
+    {if (state.portfolioStocks[pack].company==payload.company)
+    {state.portfolioStocks[pack].amount=Number(state.portfolioStocks[pack].amount)-Number(payload.sellAmount);
+      if(state.portfolioStocks[pack].amount==0)
+      state.portfolioStocks.splice(pack,1)
+    }};
   }
-},
+
+  } ,
+
 getters:{
   getTransactionState:state=>{
     return state.transaction;
@@ -78,6 +97,9 @@ getters:{
   },
   getHistory:state=>{
     return state.history;
+  },
+  getPortfolioStocks:state=>{
+    return state.portfolioStocks;
   }
 }
 
