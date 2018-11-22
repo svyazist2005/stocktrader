@@ -39,6 +39,9 @@ state:{
     transaction:false
 },
 mutations:{
+  addEventToHistory:(state,payload)=>{
+    state.history.push(payload);
+  },
   getPortfolioStockValue:state=>{
     for(var i in state.portfolioStocks)
     for(var i2 in state.marketStocks)
