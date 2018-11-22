@@ -55,7 +55,7 @@ export default{
       this.updateFunds();
       if(this.$store.getters.getTransactionState)
       {
-      this.addHistory(this.purchase.buyAmount +" "+this.purchase.company+" stocks purchased,"+this.purchase.value+ "$ each. Expense: "+Number(this.purchase.buyAmount)*Number(this.purchase.value)+"$");
+      this.addEventToHistory(this.purchase.buyAmount +" "+this.purchase.company+" stocks purchased,"+this.purchase.value+ "$ each. Expense: "+Number(this.purchase.buyAmount)*Number(this.purchase.value)+"$");
       this.buy();
       }}
     ,
@@ -65,7 +65,7 @@ export default{
         this.updateFunds();
         if(this.$store.getters.getTransactionState)
         {
-        this.addHistory(this.amount +" "+this.purchase.company+" stocks sold,"+this.purchase.value+ "$ each. Income: "+Number(this.amount)*Number(this.purchase.value)+"$");
+        this.addEventToHistory(this.amount +" "+this.purchase.company+" stocks sold,"+this.purchase.value+ "$ each. Income: "+Number(this.amount)*Number(this.purchase.value)+"$");
         this.sell();
       }},
       buy(purchase){
