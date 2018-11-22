@@ -76,9 +76,6 @@ export default{
       },
       updateFunds(purchase){
         this.$store.commit('fundsUpdate',purchase=this.purchase);
-      },
-      addHistory(event){
-        this.$store.commit('addEventToHistory',event)
       }
 
 
