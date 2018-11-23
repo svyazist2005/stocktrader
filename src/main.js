@@ -9,7 +9,7 @@ import {store} from './store.js';
 import VueResource from 'vue-resource'
 
 Vue.use(VueResource);
-Vue.http.options.root='https://stocktraderapp-767c7.firebaseio.com/';
+Vue.http.options.root='https://stock-trader-b1828.firebaseio.com/';
 Vue.use(VueRouter);
 
 const router=new VueRouter({routes})
