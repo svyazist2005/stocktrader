@@ -39,16 +39,24 @@ state:{
     transaction:false
 },
 mutations:{
+  load:(state,payload)=>{
+      state.portfolioStocks=payload[0];
+      state.marketStocks=payload[1];
+      state.funds=payload[2];
+      state.gameDay=payload[3];
+      state.history=payload[4];
+  },
   addEventToHistory:(state,payload)=>{
     state.history.push(payload);
   },
-  getPortfolioStockValue:state=>{
+  setPortfolioStockValue:state=>{
     for(var i in state.portfolioStocks)
     for(var i2 in state.marketStocks)
     if(state.marketStocks[i2].company==state.portfolioStocks[i].company)
     state.portfolioStocks[i].value=state.marketStocks[i2].value;
   },
   endDay:state=>{
+    state.gameDay++;
     for(var i in state.marketStocks)
     state.marketStocks[i].value=Math.floor(Math.random() * (Math.floor(100) - Math.ceil(1) + 1)) + Math.ceil(1);;
   },
@@ -84,6 +92,9 @@ mutations:{
       if(state.portfolioStocks[pack].amount==0)
       state.portfolioStocks.splice(pack,1)
     }};
+  },
+  taxes:state=>{
+  state.funds=state.funds-Math.ceil(state.funds*0.3);
   }
 
   } ,
@@ -103,6 +114,9 @@ getters:{
   },
   getPortfolioStocks:state=>{
     return state.portfolioStocks;
+  },
+  getMarketStocks:state=>{
+    return state.marketStocks;
   }
 }
 
